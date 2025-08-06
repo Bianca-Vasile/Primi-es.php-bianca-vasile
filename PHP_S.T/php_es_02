@@ -1,0 +1,9 @@
+<?php 
+$total = 1500;
+
+$stringa_appici_singoli = 'il totale degli importi delle fatture emmese questo mese è di' .$total . ' euro ';
+$stringa_appici_doppi   = "il totale degli importi delle fature emmese questo mese è di $total  euro";
+echo  $stringa_appici_singoli . "\n";
+echo  $stringa_appici_doppi   . "\n";
+
+?>

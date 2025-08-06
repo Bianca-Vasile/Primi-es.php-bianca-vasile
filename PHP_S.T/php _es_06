@@ -1,0 +1,17 @@
+<?php
+$x = 10;
+$y = 20;
+// stringa
+$z = "20";  
+$w = 10;
+
+// confronti
+var_dump($x < $y);          // (true)
+var_dump($x <= $w);         // (true)
+var_dump($y == $z);         // (true), perché "20" è convertita in numero
+var_dump($x == $z);         // (false), 10 != 20
+var_dump($y !== $z);        // (true), diverso tipo
+var_dump($y != $z);         // (false), uguali come valore dopo conversione
+
+echo "test .\n"
+?>

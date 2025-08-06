@@ -1,0 +1,31 @@
+<?php
+$a = 10;
+$b = 20;
+$c = "20";
+$d = "Sono una stringa";
+
+// somma tra $a   e $b
+var_dump($a + $b);
+
+// somma tra $a e $c stringa numerica
+var_dump($a + $c);
+
+// somma tra $a e $d stringa non numerica
+var_dump($a + $d);
+
+// concatenazione tra $a e$d
+var_dump($a . $d);
+
+// moltiplicazione
+var_dump($a * $b)
+
+// divisione
+($a / $b);
+
+// modullo
+var_dump($a % $b);
+// modullo inverso
+var_dump($b % $a);
+
+
+?>

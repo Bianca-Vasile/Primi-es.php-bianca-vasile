@@ -1,0 +1,8 @@
+<?php
+// elenco corsi PHP, Laravel, Javascript, CSS, HTML
+$corsi =["PHP" ,"LARAVEL" ,"JAVASRIPT" ,"CSS" ,"HTML"];
+
+print_r($corsi);
+?>
+
+

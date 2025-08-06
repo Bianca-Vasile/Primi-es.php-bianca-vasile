@@ -1,0 +1,19 @@
+<?php 
+$auto = [
+'marca'   => 'FIAT' ,
+'modello' => '500'  ,
+'motore'  => 'eletrico',
+'colore'  => 'rosso'
+
+
+];
+// stampa con appici singoli e concatenazione
+
+echo 'L\'auto scelta è una ' . $auto['marca'] . ' ' . $auto['modello'] . ".\n";
+// aggiungo accesori
+// $auto = ['accesori'] = ['cambio automatico','navigatore stellitare'];
+
+// stampo tutto con laggiunta degli accesori
+
+print_r($auto);
+?>

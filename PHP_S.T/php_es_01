@@ -1,0 +1,25 @@
+<?php
+
+// variabile intero
+$numeroIntero = 0;
+
+// variabile decimale
+$numeroDecimale = 5.5;
+
+// variabile stringa
+$testo = "Cerco di imparare il php";
+
+// variabile booleano
+$veroOfalso = true;
+
+// il tipo di variabili e il valore
+var_dump($numeroIntero);
+var_dump($numeroDecimale);
+var_dump($testo);
+var_dump($veroOfalso);
+
+
+
+echo "Ciao questo e il mio primo esercizio PHP\n"
+?>
+
