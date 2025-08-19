@@ -1,0 +1,21 @@
+<?php
+
+function analizza_stringa($stringa) {
+    // l'array associativo
+    return [
+        'testo' => $stringa,
+        'numero_caratteri' => strlen($stringa),
+        'maiuscolo' => strtoupper($stringa),
+        'minuscolo' => strtolower($stringa)
+    ];
+}
+
+// Test
+$risultato = analizza_stringa("Ciao Mondo!");
+
+// l'array risultante
+echo "<pre>";
+print_r($risultato);
+echo "</pre>";
+
+?>

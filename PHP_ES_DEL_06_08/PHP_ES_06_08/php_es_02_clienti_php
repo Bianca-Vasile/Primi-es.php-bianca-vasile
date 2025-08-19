@@ -1,0 +1,72 @@
+<?php
+
+// Classe : Cliente
+class Cliente {
+    public $nome;
+    public $citta;
+    public $fatturato_annuo;
+    public $responsabile;
+
+    // Costruttore
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile) {
+        $this->nome = $nome;
+        $this->citta = $citta;
+        $this->fatturato_annuo = $fatturato_annuo;
+        $this->responsabile = $responsabile;
+    }
+
+    public function stampaDati() {
+        echo "Nome: $this->nome\n";
+        echo "Città: $this->citta\n";
+        echo "Fatturato annuo: $this->fatturato_annuo €\n";
+        echo "Responsabile: $this->responsabile\n";
+    }
+}
+
+// Classe: Negozio
+class Negozio extends Cliente {
+    public $telefono;
+    public $email;
+
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile, $telefono, $email) {
+        parent::__construct($nome, $citta, $fatturato_annuo, $responsabile);
+        $this->telefono = $telefono;
+        $this->email = $email;
+    }
+
+    public function stampaDati() {
+        echo "---- NEGOZIO ----\n";
+        parent::stampaDati();
+        echo "Telefono: $this->telefono\n";
+        echo "Email: $this->email\n\n";
+    }
+}
+
+// Classe: GrandeDistribuzione
+class GrandeDistribuzione extends Cliente {
+    public $sedi; // array di città
+
+    // Costruttore che accetta anche le sedi
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile, $sedi) {
+        parent::__construct($nome, $citta, $fatturato_annuo, $responsabile);
+        $this->sedi = $sedi;
+    }
+
+    public function stampaDati() {
+        echo "---- GRANDE DISTRIBUZIONE ----\n";
+        parent::stampaDati();
+        echo "Sedi: " . implode(", ", $this->sedi) . "\n\n";
+    }
+}
+
+// Creazione   oggetti
+$negozio1 = new Negozio("TechStore", "Bologna", 250000, "Mario Rossi", "051123456", "techstore@email.com");
+$grande1 = new GrandeDistribuzione("MegaTech", "Milano", 2000000, "Laura Bianchi", ["Milano", "Roma", "Napoli"]);
+
+//  in un array
+$clienti = [$negozio1, $grande1];
+
+// Stampa
+foreach ($clienti as $cliente) {
+    $cliente->stampaDati();
+}

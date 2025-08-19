@@ -1,0 +1,55 @@
+<?php
+// Classe : Clienteclass Cliente {
+    public $nome;
+    public $citta;
+    public $fatturato_annuo;
+    public $responsabile;
+
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile) {
+        $this->nome = $nome;
+        $this->citta = $citta;
+        $this->fatturato_annuo = $fatturato_annuo;
+        $this->responsabile = $responsabile;
+    }
+
+    public function stampaDati() {
+        echo "Nome: $this->nome\n";
+        echo "Città: $this->citta\n";
+        echo "Fatturato annuo: $this->fatturato_annuo €\n";
+        echo "Responsabile: $this->responsabile\n";
+    }
+
+
+
+// Classe figlia: GrandeDistribuzione
+
+class GrandeDistribuzione extends Cliente {
+    public $sedi;
+
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile, $sedi) {
+        parent::__construct($nome, $citta, $fatturato_annuo, $responsabile);
+        $this->sedi = $sedi;
+    }
+
+    // richiesta all’esercizio 3
+    public function aggiungiSede($nuovaSede) {
+        $this->sedi[] = $nuovaSede;
+    }
+
+    public function stampaDati() {
+        echo "---- GRANDE DISTRIBUZIONE ----\n";
+        parent::stampaDati();
+        echo "Sedi: " . implode(", ", $this->sedi) . "\n\n";
+    }
+}
+
+
+// ESEMPIO 
+
+
+$grande = new GrandeDistribuzione("MegaTech", "Milano", 2000000, "Laura Bianchi", ["Milano", "Roma"]);
+
+$grande->aggiungiSede("Napoli");
+$grande->aggiungiSede("Torino");
+
+$grande->stampaDati();

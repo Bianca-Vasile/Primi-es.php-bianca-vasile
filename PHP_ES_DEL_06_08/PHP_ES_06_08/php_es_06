@@ -1,0 +1,146 @@
+<?php
+
+// Classe base Cliente
+class Cliente {
+    protected $nome;
+    protected $citta;
+    protected $fatturato_annuo;
+    protected $responsabile;
+
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile) {
+        $this->nome = $nome;
+        $this->citta = $citta;
+        $this->fatturato_annuo = $fatturato_annuo;
+        $this->responsabile = $responsabile;
+    }
+
+    // Getter per nome
+    public function getNome() {
+        return $this->nome;
+    }
+
+    // Setter per nome
+    public function setNome($nome) {
+        $this->nome = $nome;
+    }
+
+    // Getter per città
+    public function getCitta() {
+        return $this->citta;
+    }
+
+    // Setter per città
+    public function setCitta($citta) {
+        $this->citta = $citta;
+    }
+
+    // Getter per fatturato annuo
+    public function getFatturatoAnnuo() {
+        return $this->fatturato_annuo;
+    }
+
+    // Setter per fatturato annuo
+    public function setFatturatoAnnuo($fatturato) {
+        $this->fatturato_annuo = $fatturato;
+    }
+
+    // Getter per responsabile
+    public function getResponsabile() {
+        return $this->responsabile;
+    }
+
+    // Setter per responsabile
+    public function setResponsabile($responsabile) {
+        $this->responsabile = $responsabile;
+    }
+
+    public function stampaDati() {
+        echo "Nome: " . $this->getNome() . "<br>";
+        echo "Città: " . $this->getCitta() . "<br>";
+        echo "Fatturato annuo: " . $this->getFatturatoAnnuo() . " €<br>";
+        echo "Responsabile: " . $this->getResponsabile() . "<br>";
+    }
+}
+
+// Classe Negozio che estende Cliente
+class Negozio extends Cliente {
+    protected $telefono;
+    protected $email;
+
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile, $telefono, $email) {
+        parent::__construct($nome, $citta, $fatturato_annuo, $responsabile);
+        $this->telefono = $telefono;
+        $this->email = $email;
+    }
+
+    // Getter e setter per telefono
+    public function getTelefono() {
+        return $this->telefono;
+    }
+
+    public function setTelefono($telefono) {
+        $this->telefono = $telefono;
+    }
+
+    // Getter e setter per email
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function stampaDati() {
+        echo "<h3>--- NEGOZIO ---</h3>";
+        parent::stampaDati();
+        echo "Telefono: " . $this->getTelefono() . "<br>";
+        echo "Email: " . $this->getEmail() . "<br><br>";
+    }
+}
+
+// Classe GrandeDistribuzione che estende Cliente
+class GrandeDistribuzione extends Cliente {
+    protected $sedi;
+
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile, $sedi = []) {
+        parent::__construct($nome, $citta, $fatturato_annuo, $responsabile);
+        $this->sedi = $sedi;
+    }
+
+    // Getter e setter per le sedi
+    public function getSedi() {
+        return $this->sedi;
+    }
+
+    public function setSedi($sedi) {
+        $this->sedi = $sedi;
+    }
+
+    public function getFatturatoAnnuo() {
+        return "Dato attualmente non disponibile.";
+    }
+
+    public function aggiungiSede($nuovaSede) {
+        $this->sedi[] = $nuovaSede;
+    }
+
+    public function stampaDati() {
+        echo "<h3>--- GRANDE DISTRIBUZIONE ---</h3>";
+        parent::stampaDati();
+        echo "Sedi: " . implode(", ", $this->getSedi()) . "<br><br>";
+    }
+}
+
+
+
+$negozio = new Negozio("TechPoint", "Bologna", 300000, "Anna Verdi", "0511234567", "contatti@techpoint.it");
+$grande = new GrandeDistribuzione("SuperStore", "Milano", 5000000, "Luca Bianchi", ["Milano", "Torino"]);
+$grande->aggiungiSede("Roma");
+
+$clienti = [$negozio, $grande];
+
+foreach ($clienti as $cliente) {
+    $cliente->stampaDati();
+}
+

@@ -1,0 +1,85 @@
+<?php
+
+// Classe padre
+class Cliente {
+    public $nome;
+    public $citta;
+    private $fatturato_annuo;
+    public $responsabile;
+
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile) {
+        $this->nome = $nome;
+        $this->citta = $citta;
+        $this->fatturato_annuo = $fatturato_annuo;
+        $this->responsabile = $responsabile;
+    }
+
+    public function getFatturatoAnnuo() {
+        return $this->fatturato_annuo;
+    }
+
+    public function stampaDati() {
+        echo "Nome: $this->nome<br>";
+        echo "Città: $this->citta<br>";
+        echo "Fatturato annuo: " . $this->getFatturatoAnnuo() . " €<br>";
+        echo "Responsabile: $this->responsabile<br>";
+    }
+}
+
+// Classe figlia per i Negozi (singola sede)
+class Negozio extends Cliente {
+    public $telefono;
+    public $email;
+
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile, $telefono, $email) {
+        parent::__construct($nome, $citta, $fatturato_annuo, $responsabile);
+        $this->telefono = $telefono;
+        $this->email = $email;
+    }
+
+    public function stampaDati() {
+        echo "<h3>--- NEGOZIO ---</h3>";
+        parent::stampaDati();
+        echo "Telefono: $this->telefono<br>";
+        echo "Email: $this->email<br><br>";
+    }
+}
+
+// Classe figlia per la Grande Distribuzione (più sedi)
+class GrandeDistribuzione extends Cliente {
+    public $sedi;
+
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile, $sedi = []) {
+        parent::__construct($nome, $citta, $fatturato_annuo, $responsabile);
+        $this->sedi = $sedi;
+    }
+
+    //  nasconde il fatturato reale
+    public function getFatturatoAnnuo() {
+        return "Dato attualmente non disponibile.";
+    }
+
+    public function aggiungiSede($nuovaSede) {
+        $this->sedi[] = $nuovaSede;
+    }
+
+    public function stampaDati() {
+        echo "<h3>--- GRANDE DISTRIBUZIONE ---</h3>";
+        parent::stampaDati();
+        echo "Sedi: " . implode(", ", $this->sedi) . "<br><br>";
+    }
+}
+
+
+
+$negozio = new Negozio("TechPoint", "Bologna", 300000, "Anna Verdi", "0511234567", "contatti@techpoint.it");
+
+$grande = new GrandeDistribuzione("SuperStore", "Milano", 5000000, "Luca Bianchi", ["Milano", "Torino"]);
+$grande->aggiungiSede("Roma");
+
+// Lista clienti
+$clienti = [$negozio, $grande];
+
+foreach ($clienti as $cliente) {
+    $cliente->stampaDati();
+}

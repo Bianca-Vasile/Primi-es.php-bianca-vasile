@@ -1,0 +1,75 @@
+<?php
+
+class Cliente {
+    public $nome;
+    public $citta;
+    private $fatturato_annuo;
+    public $responsabile;
+
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile) {
+        $this->nome = $nome;
+        $this->citta = $citta;
+        $this->fatturato_annuo = $fatturato_annuo;
+        $this->responsabile = $responsabile;
+    }
+
+    public function getFatturatoAnnuo() {
+        return $this->fatturato_annuo;
+    }
+
+    public function stampaDati() {
+        echo "Nome: $this->nome\n";
+        echo "Città: $this->citta\n";
+        echo "Fatturato annuo: " . $this->getFatturatoAnnuo() . " €\n";
+        echo "Responsabile: $this->responsabile\n";
+    }
+}
+
+class Negozio extends Cliente {
+    public $telefono;
+    public $email;
+
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile, $telefono, $email) {
+        parent::__construct($nome, $citta, $fatturato_annuo, $responsabile);
+        $this->telefono = $telefono;
+        $this->email = $email;
+    }
+
+    public function stampaDati() {
+        echo "---- NEGOZIO ----\n";
+        parent::stampaDati();
+        echo "Telefono: $this->telefono\n";
+        echo "Email: $this->email\n\n";
+    }
+}
+
+class GrandeDistribuzione extends Cliente {
+    public $sedi;
+
+    public function __construct($nome, $citta, $fatturato_annuo, $responsabile, $sedi) {
+        parent::__construct($nome, $citta, $fatturato_annuo, $responsabile);
+        $this->sedi = $sedi;
+    }
+
+    public function aggiungiSede($nuovaSede) {
+        $this->sedi[] = $nuovaSede;
+    }
+
+    public function stampaDati() {
+        echo "---- GRANDE DISTRIBUZIONE ----\n";
+        parent::stampaDati();
+        echo "Sedi: " . implode(", ", $this->sedi) . "\n\n";
+    }
+}
+
+
+$negozio1 = new Negozio("TechStore", "Bologna", 250000, "Mario Rossi", "051123456", "techstore@email.com");
+$grande1 = new GrandeDistribuzione("MegaTech", "Milano", 2000000, "Laura Bianchi", ["Milano", "Roma"]);
+
+$grande1->aggiungiSede("Napoli");
+
+$clienti = [$negozio1, $grande1];
+
+foreach ($clienti as $cliente) {
+    $cliente->stampaDati();
+}

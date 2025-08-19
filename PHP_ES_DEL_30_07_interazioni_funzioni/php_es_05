@@ -1,0 +1,11 @@
+<?php
+
+function calcola_area_rettangolo($base, $altezza) {
+    return $base * $altezza;
+}
+
+//  argomenti correttamente
+$area = calcola_area_rettangolo(10, 5);
+
+
+echo "L'area è: $area";

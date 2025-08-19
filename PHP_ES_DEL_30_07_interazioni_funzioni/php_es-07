@@ -1,0 +1,10 @@
+<?php
+
+
+$testo = "Ciao a tutti!";
+
+
+$lunghezza = strlen($testo);
+
+
+echo "La stringa contiene $lunghezza caratteri.";

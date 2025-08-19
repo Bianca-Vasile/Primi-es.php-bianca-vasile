@@ -1,0 +1,16 @@
+<?php
+
+function stampa_testo($stringa = "") {
+    if ($stringa == "") {
+        echo "Attenzione: non hai indicato la stringa da stampare";
+    } else {
+        echo $stringa;
+    }
+}
+
+//  con stringa
+stampa_testo("Ciao, mondo!");
+echo "<br>";
+
+// senza stringa
+stampa_testo();

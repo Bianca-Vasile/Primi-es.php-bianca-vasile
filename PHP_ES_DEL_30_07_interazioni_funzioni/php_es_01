@@ -1,0 +1,14 @@
+<?php
+
+// Array di corsi
+$corsi = ["Matematica", "Informatica", "Fisica", "Chimica", "Biologia"];
+
+// Variabile di ricerca
+$search = "Fisica";
+
+// Ciclo foreach per scorrere l'array
+foreach ($corsi as $corso) {
+    if ($corso == $search) {
+        echo "Trovato!";
+    }
+}

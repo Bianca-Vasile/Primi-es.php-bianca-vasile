@@ -1,0 +1,9 @@
+<?php
+
+// Definizione della costante
+define('MAX', 10);
+
+// Ciclo for da 1 a MAX
+for ($i = 1; $i <= MAX; $i++) {
+    echo $i . "<br>";
+}

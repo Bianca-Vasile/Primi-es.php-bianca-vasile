@@ -1,0 +1,20 @@
+<?php
+
+function check_password_lenght($password) {
+    $lunghezza = strlen($password);
+
+    if ($lunghezza >= 8 && $lunghezza <= 18) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Test 
+$password1 = "1234567";       
+$password2 = "password123";   
+$password3 = "questaèunapasswordmoltoLunga"; 
+
+echo "Password 1: " . (check_password_lenght($password1) ? "Valida" : "Non valida") . "<br>";
+echo "Password 2: " . (check_password_lenght($password2) ? "Valida" : "Non valida") . "<br>";
+echo "Password 3: " . (check_password_lenght($password3) ? "Valida" : "Non valida") . "<br>";

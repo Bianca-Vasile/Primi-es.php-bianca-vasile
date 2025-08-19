@@ -1,0 +1,91 @@
+<?php
+
+// Classe genitore Cliente
+class Cliente {
+    public $nome;
+    public $citta;
+    public $fatturatoAnnuo;
+    public $responsabile;
+
+    // Costruttore
+    public function __construct($nome, $citta, $fatturatoAnnuo, $responsabile) {
+        $this->nome = $nome;
+        $this->citta = $citta;
+        $this->fatturatoAnnuo = $fatturatoAnnuo;
+        $this->responsabile = $responsabile;
+    }
+
+    // Stmpare dati base
+    public function stampaInfoBase() {
+        echo "Nome cliente: {$this->nome}\n";
+        echo "Città: {$this->citta}\n";
+        echo "Fatturato annuo: €{$this->fatturatoAnnuo}\n";
+        echo "Responsabile: {$this->responsabile}\n";
+    }
+}
+
+echo "=== CAPITOLO 1: Classe Cliente ===\n";
+
+$cliente_test = new Cliente("Base srl", "Torino", 1000000, "Mario Rossi");
+$cliente_test->stampaInfoBase();
+class Negozio extends Cliente {
+    public $telefono;
+    public $email;
+
+    public function __construct($nome, $citta, $fatturatoAnnuo, $responsabile, $telefono, $email) {
+        parent::__construct($nome, $citta, $fatturatoAnnuo, $responsabile);
+        $this->telefono = $telefono;
+        $this->email = $email;
+    }
+
+    public function stampaInfo() {
+        $this->stampaInfoBase(); 
+        echo "Telefono: {$this->telefono}\n";
+        echo "Email: {$this->email}\n";
+    }
+}
+
+
+echo "\n=== CAPITOLO 2: Classe Negozio ===\n";
+$negozio = new Negozio("Tech Store", "Milano", 500000, "Luca Bianchi", "02-1234567", "info@techstore.it");
+$negozio->stampaInfo();
+
+
+// === CAPITOLO 3: Classe GrandeDistribuzione ===
+class GrandeDistribuzione extends Cliente {
+    public $sedi;
+
+    public function __construct($nome, $citta, $fatturatoAnnuo, $responsabile, $sedi = []) {
+        parent::__construct($nome, $citta, $fatturatoAnnuo, $responsabile);
+        $this->sedi = $sedi;
+    }
+
+    public function stampaInfo() {
+        $this->stampaInfoBase();
+        echo "Sedi:\n";
+        foreach ($this->sedi as $sede) {
+            echo "- $sede\n";
+
+        }
+    }
+}
+// === TEST  OGGETTI ===
+echo "\n=== NEGOZIO ===\n";
+$negozio = new Negozio("Tech Store", "Milano", 500000, "Luca Bianchi", "02-1234567", "info@techstore.it");
+$negozio->stampaInfo();
+
+
+echo "\n\n=== GRANDE DISTRIBUZIONE ===\n";
+$grandeDistribuzione = new GrandeDistribuzione(
+    "MegaMarket",
+    "Roma",
+    3000000,
+    "Giovanni Verdi",
+    ["Milano", "Roma", "Napoli", "Torino"]
+);
+$grandeDistribuzione->stampaInfo();
+
+
+
+
+

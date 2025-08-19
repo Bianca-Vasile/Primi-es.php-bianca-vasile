@@ -1,0 +1,8 @@
+<?php
+function moltiplizazione($num1, $num2){
+    $risultato =$num1 * $num2;
+    echo "il risultato è : $risultato" ;
+
+}
+
+moltiplicazione (4, 5);
